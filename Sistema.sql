@@ -4,13 +4,18 @@
 -- Project :      Practico.dm1
 -- Author :       hp
 --
--- Date Created : Saturday, May 25, 2013 18:02:02
+-- Date Created : Saturday, May 25, 2013 22:27:50
 -- Target DBMS : MySQL 5.x
 --
 
 -- 
 -- TABLE: Cargos 
 --
+
+
+
+create database Sistema;
+use sistema;
 
 CREATE TABLE Cargos(
     ID_Cargo        INT               NOT NULL,
@@ -67,6 +72,7 @@ CREATE TABLE Compras_Detalle(
     Cantidad         DECIMAL(10, 0)    NOT NULL,
     Precio_Compra    DECIMAL(10, 0)    NOT NULL,
     Tasa_IVA         DECIMAL(1, 0)     NOT NULL,
+    Deposito         DECIMAL(10, 0)    NOT NULL,
     PRIMARY KEY (ID_Detalle, Factura)
 )ENGINE=MYISAM
 ;
@@ -204,7 +210,6 @@ CREATE TABLE Lista_Precios(
     Item             DECIMAL(10, 0)    NOT NULL,
     Precio_Venta     DECIMAL(10, 0)    NOT NULL,
     Precio_Compra    DECIMAL(10, 0)    NOT NULL,
-    Existencias      DECIMAL(10, 0)    NOT NULL,
     PRIMARY KEY (Item)
 )ENGINE=MYISAM
 ;
@@ -405,6 +410,7 @@ CREATE TABLE Ventas_Detalle(
     Cantidad        DECIMAL(10, 0)    NOT NULL,
     Precio_Venta    DECIMAL(10, 0)    NOT NULL,
     Tasa_IVA        DECIMAL(1, 0)     NOT NULL,
+    Deposito        DECIMAL(10, 0)    NOT NULL,
     PRIMARY KEY (ID_Detalle, Factura)
 )ENGINE=MYISAM
 ;
@@ -448,6 +454,11 @@ ALTER TABLE Compras_Detalle ADD CONSTRAINT RefProductos29
 ALTER TABLE Compras_Detalle ADD CONSTRAINT RefIVA_Tasas40 
     FOREIGN KEY (Tasa_IVA)
     REFERENCES IVA_Tasas(ID_Tasa)
+;
+
+ALTER TABLE Compras_Detalle ADD CONSTRAINT RefDepositos71 
+    FOREIGN KEY (Deposito)
+    REFERENCES Depositos(ID_Deposito)
 ;
 
 
@@ -525,14 +536,14 @@ ALTER TABLE Lista_Precios ADD CONSTRAINT RefProductos44
 -- TABLE: Ordenes_Detalles 
 --
 
-ALTER TABLE Ordenes_Detalles ADD CONSTRAINT RefFacturas_Compras63 
-    FOREIGN KEY (Factura)
-    REFERENCES Facturas_Compras(ID_Factura)
-;
-
 ALTER TABLE Ordenes_Detalles ADD CONSTRAINT RefOrdenes_Pagos60 
     FOREIGN KEY (Orden_Pago)
     REFERENCES Ordenes_Pagos(ID_Orden_Pago)
+;
+
+ALTER TABLE Ordenes_Detalles ADD CONSTRAINT RefFacturas_Compras63 
+    FOREIGN KEY (Factura)
+    REFERENCES Facturas_Compras(ID_Factura)
 ;
 
 
@@ -663,6 +674,11 @@ ALTER TABLE Ventas_Detalle ADD CONSTRAINT RefProductos17
 ALTER TABLE Ventas_Detalle ADD CONSTRAINT RefIVA_Tasas39 
     FOREIGN KEY (Tasa_IVA)
     REFERENCES IVA_Tasas(ID_Tasa)
+;
+
+ALTER TABLE Ventas_Detalle ADD CONSTRAINT RefDepositos70 
+    FOREIGN KEY (Deposito)
+    REFERENCES Depositos(ID_Deposito)
 ;
 
 
