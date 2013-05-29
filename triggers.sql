@@ -10,3 +10,4 @@ for each row
 insert into ventas_productos select Fecha,New.producto, New.Cantidad*New.Precio_Venta,New.Deposito from facturas_ventas as fv,
 ventas_detalle as vd where fv.ID_Factura=New.Factura;
 
+
