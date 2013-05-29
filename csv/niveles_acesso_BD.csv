@@ -1,0 +1,5 @@
+ID_Acceso,Tipo_Acceso,Descripcion
+100,Tipo_1,para vendedor
+101,Tipo_2,para depositero
+102,Tipo_3,para supervisor
+103,Tipo_4,para gerente
