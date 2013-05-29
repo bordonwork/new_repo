@@ -13,7 +13,7 @@
 --
 
 
-
+drop database Sistema;
 create database Sistema;
 use sistema;
 
@@ -181,8 +181,8 @@ CREATE TABLE Forma_Pago(
 --
 
 CREATE TABLE IVA_Tasas(
-    ID_Tasa       DECIMAL(1, 0)    NOT NULL,
-    Porcentaje    DECIMAL(2, 2)    NOT NULL,
+    ID_Tasa       DECIMAL(10, 0)    NOT NULL,
+    Porcentaje    DECIMAL(10, 2)    NOT NULL,
     PRIMARY KEY (ID_Tasa)
 )ENGINE=MYISAM
 ;
