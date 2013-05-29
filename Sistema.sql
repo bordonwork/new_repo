@@ -38,7 +38,20 @@ CREATE TABLE Categorias_Clientes(
     PRIMARY KEY (ID_Categoria)
 )ENGINE=MYISAM
 ;
-
+CREATE TABLE Compras_Productos(
+	Fecha			 DATE			   NOT NULL,
+	Producto		 DECIMAL(10,0)	   NOT NULL,
+	Total			 DECIMAL(10,0)     NOT NULL,
+	Deposito         DECIMAL(10,0)     NOT NULL
+)ENGINE=MYISAM
+;
+CREATE TABLE Ventas_Productos(
+	Fecha			 DATE			   NOT NULL,
+	Producto		 DECIMAL(10,0)	   NOT NULL,
+	Total			 DECIMAL(10,0)     NOT NULL,
+	Deposito         DECIMAL(10,0)     NOT NULL
+)ENGINE=MYISAM
+;
 
 
 -- 
@@ -84,7 +97,7 @@ CREATE TABLE Compras_Detalle(
 --
 
 CREATE TABLE Condiciones_Ventas(
-    ID_Condicion    DECIMAL(3, 0)    NOT NULL,
+    ID_Condicion    DECIMAL(10, 0)   NOT NULL,
     Descripcion     VARCHAR(10)      NOT NULL,
     PRIMARY KEY (ID_Condicion)
 )ENGINE=MYISAM
@@ -148,7 +161,7 @@ CREATE TABLE Facturas_Compras(
 CREATE TABLE Facturas_Ventas(
     ID_Factura         DECIMAL(10, 0)    NOT NULL,
     Numero_Factura     DECIMAL(10, 0)    NOT NULL,
-    Condicion_Venta    DECIMAL(3, 0)     NOT NULL,
+    Condicion_Venta    DECIMAL(10, 0)     NOT NULL,
     Fecha              DATE              NOT NULL,
     Vencimiento        DATE              NOT NULL,
     Vendedor           DECIMAL(4, 0)     NOT NULL,
