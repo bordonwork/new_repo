@@ -290,14 +290,13 @@ CREATE TABLE Ordenes_Pagos(
 -- 
 -- TABLE: Productos 
 --
-
 CREATE TABLE Productos(
     ID_Producto              DECIMAL(10, 0)    NOT NULL,
     Codigo_Barra             VARCHAR(30)       NOT NULL,
     Linea_Producto           DECIMAL(10, 0)    NOT NULL,
     Marca                    DECIMAL(3, 0)     NOT NULL,
     Descripcion              VARCHAR(200)      NOT NULL,
-    Tasa_IVA                 DECIMAL(1, 0)     NOT NULL,
+    Tasa_IVA                 DECIMAL(10,2)     NOT NULL,
     Ultimo_Costo_Unitario    DECIMAL(10, 0)    NOT NULL,
     PRIMARY KEY (ID_Producto)
 )ENGINE=MYISAM
