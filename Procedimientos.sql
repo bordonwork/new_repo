@@ -1,32 +1,36 @@
-use sistema;
+USE sistema;
+-- procedimiento que devuelve el total de compras en un rago de fecha
+DROP PROCEDURE IF EXISTS p_total_compras;
+CREATE PROCEDURE p_total_compras(desde DATE,hasta DATE)
+SELECT Fecha,Deposito,F_COMPRAS_DEPOSITO(Deposito,Fecha) AS Total 
+FROM compras_producto WHERE Fecha BETWEEN desde AND hasta; 
 
-create function f_compras_deposito(deposito Decimal(10,0),fecha Date) returns Decimal(10,0)
-return (select sum(Total) from compras_productos where compras_productos.Deposito=deposito 
-and compras_productos.Fecha=fecha);
+-- procedimiento que devuelve una tabla con el total de ventas en un rango de fecha
+DROP PROCEDURE IF EXISTS p_total_ventas;
+CREATE PROCEDURE p_total_ventas(desde DATE,hasta DATE)
+SELECT Fecha,Deposito,F_VENTAS_DEPOSITO(Deposito,Fecha) AS Total 
+FROM ventas_producto WHERE Fecha BETWEEN desde AND hasta; 
 
-create function f_ventas_deposito(deposito Decimal(10,0),fecha Date) returns Decimal(10,0)
-return (select sum(Total) from ventas_productos where ventas_productos.Deposito=deposito 
-and ventas_productos.Fecha=fecha);
+-- procedimiento que devuelve una tabla con las facturas sin cobrar vencidas
+DROP PROCEDURE IF EXISTS p_facturas_v_venc;
+CREATE PROCEDURE p_facturas_v_venc()
+SELECT* FROM v_facturas_cobro_pend WHERE Fecha < TODAY();
 
-create procedure p_total_compras(in desde Date,hasta Date)
-select Fecha,Deposito,f_compras_deposito(Deposito,Fecha) as Total 
-from compras_producto where Fecha between desde and hasta; 
+-- procedimiento que devuelve una tabla con las facturas sin cobrar a vencer
+DROP PROCEDURE IF EXISTS p_facturas_v_avencer;
+CREATE PROCEDURE p_facturas_v_avencer()
+SELECT* FROM v_facturas_cobro_pend WHERE Fecha > TODAY();
 
-create procedure p_total_ventas(in desde Date,hasta Date)
-select Fecha,Deposito,f_ventas_deposito(Deposito,Fecha) as Total 
-from ventas_producto where Fecha between desde and hasta; 
+-- procedimiento que devuelve una tabla con las facturas sin pagar vencidas
+DROP PROCEDURE IF EXISTS p_facturas_c_venc;
+CREATE PROCEDURE p_facturas_c_venc()
+SELECT* FROM v_facturas_pago_pend WHERE Fecha < TODAY();
 
-create procedure p_facturas_v_venc()
-select* from v_facturas_cobro_pend where Fecha < today();
+-- procedimiento que devuelve una tabla con las facturas sin pagar a vencer
+DROP PROCEDURE IF EXISTS p_factuas_c_avencer;
+CREATE PROCEDURE p_facturas_c_avencer()
+SELECT* FROM v_facturas_pago_pend WHERE Fecha > TODAY();
 
-create procedure p_facturas_v_avencer()
-select* from v_facturas_cobro_pend where Fecha > today();
-
-create procedure p_facturas_c_venc()
-select* from v_facturas_pago_pend where Fecha < today();
-
-create procedure p_facturas_c_avencer()
-select* from v_facturas_pago_pend where Fecha > today();
 
 
 

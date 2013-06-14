@@ -63,9 +63,9 @@ INSERT INTO Proveedores (`ID_Proveedor`,`Nombre`,`RUC`,`Direccion`,`Telefono`,`E
 INSERT INTO Proveedores (`ID_Proveedor`,`Nombre`,`RUC`,`Direccion`,`Telefono`,`Email`,`Saldo`) VALUES  ('141','Beko Electricidad','80005672-5','Sp. Luqueño c/Humaita','(021)644 055','bekoelectricidad@hotmail.com','900000');
 INSERT INTO Proveedores (`ID_Proveedor`,`Nombre`,`RUC`,`Direccion`,`Telefono`,`Email`,`Saldo`) VALUES  ('142','Electrotec Jorge','80005673-2','Von Polesky c/Rio Ñacunday','(0981)803 272','electrotec.jorge@hotmail.com','3000000');
 
-UPDATE Depositos SET Descripcion = 'Casa Matriz. Tomas R. Pereira c/ Mcal. Estigarribia' WHERE ID_Deposito = '100';
-UPDATE Depositos SET Descripcion = 'Deposito 1. Avda. Caballero c/ Carlos A. Lopez' WHERE ID_Deposito = '101';
-UPDATE Depositos SET Descripcion = 'Deposito 2. Posadas c/ Indep. Nacional' WHERE ID_Deposito = '102';
+INSERT INTO Depositos (`ID_Deposito`,`Descripcion`) VALUES ('100','Casa Matriz. Tomas R. Pereira c/ Mcal. Estigarribia');
+INSERT INTO Depositos (`ID_Deposito`,`Descripcion`) VALUES ('101','Deposito 1. Avda. Caballero c/ Carlos A. Lopez');
+INSERT INTO Depositos (`ID_Deposito`,`Descripcion`) VALUES ('102','Deposito 2. Posadas c/ Indep. Nacional');
 
 INSERT INTO Niveles_Acceso (`ID_Acceso`,`Tipo_Acceso`,`Descripcion`) VALUES ('100','Tipo_1','para vendedor');
 INSERT INTO Niveles_Acceso (`ID_Acceso`,`Tipo_Acceso`,`Descripcion`) VALUES ('101','Tipo_2','para depositero');
@@ -99,10 +99,6 @@ INSERT INTO Empleados (`ID_Empleado`,`Nombres`,`Apellidos`,`Cedula`,`Domicilio`,
 INSERT INTO Empleados (`ID_Empleado`,`Nombres`,`Apellidos`,`Cedula`,`Domicilio`,`Telefono`,`Cargo`) VALUES ('119','Lucia','Escobar Sanabria','4289380','Florida c/ Ruta 14 111','(0985)785 402','101');
 INSERT INTO Empleados (`ID_Empleado`,`Nombres`,`Apellidos`,`Cedula`,`Domicilio`,`Telefono`,`Cargo`) VALUES ('120','Ruben Dario','Romero Diaz','3897610','Av. 3 San Pedro etapa4 215','(0975)340 001','102');
 
-INSERT INTO Tipos_Pagos (`ID_Tipo_Pago`,`Descripcion`) VALUES ('100','Efectivo');
-INSERT INTO Tipos_Pagos (`ID_Tipo_Pago`,`Descripcion`) VALUES ('101','Cheque');
-INSERT INTO Tipos_Pagos (`ID_Tipo_Pago`,`Descripcion`) VALUES ('102','Nota de Extraccion');
-INSERT INTO Tipos_Pagos (`ID_Tipo_Pago`,`Descripcion`) VALUES ('103','Pagare');
 
 INSERT INTO Lineas_Productos (`ID_LINEA_PRODUCTO`,`DESCRIPCION`) VALUES ('100','Arrancadores & Ignitores');
 INSERT INTO Lineas_Productos (`ID_LINEA_PRODUCTO`,`DESCRIPCION`) VALUES ('101','Automaticos de Tanque');

@@ -1,19 +1,20 @@
 use sistema;
-create or replace view v_facturas_cobro_pend as select ID_Factura as Factura,
-Numero_Factura,ID_Clientes as ID, concat(Nombre," ",Apellido) as Cliente,facturas_ventas.Saldo as Saldo from clientes,
-facturas_ventas where facturas_ventas.Saldo>0 order by Saldo desc;
+-- vista que contiene las facturas de ventas de cobro pendiente
+CREATE OR REPLACE VIEW v_facturas_cobro_pend AS SELECT ID_Factura AS Factura,
+Numero_Factura,ID_Clientes AS ID, CONCAT(Nombre," ",Apellido) AS Cliente,facturas_ventas.Saldo AS Saldo FROM clientes,
+facturas_ventas WHERE facturas_ventas.Saldo>0 ORDER BY Saldo DESC;
 
-create or replace view v_facturas_pago_pend as select ID_Factura as ID, 
-Numero_Factura,Nombre as Proveedor,facturas_compras.Saldo as Saldo from proveedores,
-facturas_compras where facturas_compras.Saldo>0 order by Saldo desc;
+-- vista que contiene las facturas de compras de pago pendiente
+CREATE OR REPLACE VIEW v_facturas_pago_pend AS SELECT ID_Factura AS ID, 
+Numero_Factura,Nombre AS Proveedor,facturas_compras.Saldo AS Saldo FROM proveedores,
+facturas_compras WHERE facturas_compras.Saldo>0 ORDER BY Saldo DESC;
 
-create or replace view v_clientes_credit as select ID_Clientes as ID, concat(Nombre," ",Apellido)
-as Cliente,Linea_Credito as Credito_Maximo from clientes as c left join categorias_clientes as cc
-on c.Categoria=cc.ID_Categoria where Linea_Credito>0 order by Linea_Credito desc;
-create function f_cantidad_producto(producto numeric(10,0)) returns numeric(10,0)	
-return (select sum(Cantidad_Disponible) from stocks where Item=Producto); 
+-- vista que contiene una lista de los clientes con credito
+CREATE OR REPLACE VIEW v_clientes_credit AS SELECT ID_Clientes AS ID, CONCAT(Nombre," ",Apellido)
+AS Cliente,Linea_Credito AS Credito_Maximo FROM clientes AS c LEFT JOIN categorias_clientes AS cc
+ON c.Categoria=cc.ID_Categoria WHERE Linea_Credito>0 ORDER BY Linea_Credito DESC;
 
-create or replace view v_stock_producto as select Item as ID, descripcion as Descripcion,
-f_cantidad_producto(Item) as Disponible from stocks left join productos on Item=ID_Producto order by ID;
+CREATE OR REPLACE VIEW v_stock_producto AS SELECT Item AS ID, descripcion AS Descripcion,
+F_CANTIDAD_PRODUCTO(Item) AS Disponible FROM stocks LEFT JOIN productos ON Item=ID_Producto ORDER BY ID;
 
  
